@@ -4,6 +4,9 @@
     --font-medium: 2rem;
     --font-regular: 1rem;
 
+    /* Font Weight */
+    --weight-bold: 700;
+
     /* Colors */
     --clr-white: #ffffff;
     --clr-background: #293b5f;
@@ -34,18 +37,23 @@ body {
 }
 
 h1 {
-    font-size: var(--font-large);
+    font-size: var(--font-medium);
+}
+
+h2 {
+    font-size: var(--font-regular);
 }
 
 .highlight {
     color: var(--clr-highlight);
+    font-weight: var(--weight-bold);
 }
 
 /* Main container - location for image slideshow */
 .container-main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-grow: 1;
     background-color: var(--clr-background);
@@ -75,13 +83,17 @@ h1 {
 }
 
 /* Dropbox */
+.container-dropbox {
+    flex-grow: 1;
+}
+
 .dropbox {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 700px;
-    height: 500px;
+    width: 90vw;
+    height: 70vh;
     font-size: var(--font-regular);
     background-color: var(--clr-dropbox);
     border: 2px dashed var(--clr-white);
@@ -113,4 +125,42 @@ h1 {
 .container-footer {
     background-color: var(--clr-background);
     text-align: center;
+}
+
+/* When screen is wider than 900px */
+@media screen and (min-width: 900px) {
+    h1 {
+        font-size: var(--font-large);
+    }
+
+    h2 {
+        font-size: var(--font-medium);
+        margin: 0;
+    }
+
+    /* Dropbox */
+    .dropbox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 900px;
+        height: 600px;
+        font-size: var(--font-regular);
+        background-color: var(--clr-dropbox);
+        border: 2px dashed var(--clr-white);
+    }
+
+    .dropbox i {
+        font-size: calc(var(--font-large) + 1.75rem);
+        color: var(--clr-white);
+    }
+
+    .dropbox p {
+        font-size: var(--font-medium);
+    }
+
+    .dropbox__btn-browse {
+        font-size: var(--font-medium);
+    }
 }
