@@ -49,7 +49,7 @@ h2 {
     font-weight: var(--weight-bold);
 }
 
-/* Main container - location for image slideshow */
+/* Main container */
 .container-main {
     display: flex;
     flex-direction: column;
@@ -125,6 +125,14 @@ h2 {
 .container-footer {
     background-color: var(--clr-background);
     text-align: center;
+}
+
+/* Image Slider  */
+.container-slider {
+    display: none;
+    width: 90vw;
+    height: 70vh;
+    background-color: var(--clr-white);
 }
 
 /* When screen is wider than 900px */
