@@ -8,6 +8,7 @@ const btnBrowse = document.querySelector(".dropbox__btn-browse");
 const inputFile = document.querySelector(".dropbox__file-loader");
 const dropboxText = document.querySelector(".dropbox p");
 const sliderContainer = document.querySelector(".container-slider");
+const slides = document.querySelector(".slides");
 
 // let file;
 let images = [];
@@ -31,17 +32,19 @@ dropbox.addEventListener("drop", (e) => {
     e.preventDefault();
 
     images = Array.from(e.dataTransfer.files);
-    console.log(images);
+    console.log(images); // Remove after
 
     isAllExtensionValid(images);
 
     images = e.dataTransfer.files;
-    console.log(images);
+    console.log(images); // Remove after
 
     dropbox.classList.remove("active");
     dropboxText.textContent = "Drag & Drop New Images to Upload.";
 
-    loadImages();
+    for (let i = 0; i < images.length; i++) {
+        loadImage(images[i]);
+    }
 });
 
 // Open up file input when Browse File button is clicked.
@@ -50,22 +53,19 @@ btnBrowse.addEventListener("click", (e) => {
 });
 
 inputFile.addEventListener("change", (e) => {
+    images = [];
+    slides.innerHTML = "";
+
     images = Array.from(inputFile.files);
     isAllExtensionValid(images);
 
-    // inputFile.files.forEach((file) => {
-    //     file.push(file);
-    // })
-    // let fileReader = new FileReader();
-    // fileReader.onload = () => {
-    //     file.push(fileReader.result);
-    // };
+    images = inputFile.files;
 
-    // console.log(file);
+    for (let i = 0; i < images.length; i++) {
+        loadImage(images[i]);
+    }
 
-    // file = e.target.files[0];
-    // dropbox.classList.add("active");
-    // loadImages();
+    dropboxText.textContent = "Click play button to start!";
 });
 
 // Start slide show when play icon is clicked.
@@ -73,9 +73,6 @@ play.addEventListener("click", () => {
     // Hide container-dropbox
     dropboxContainer.style.display = "none";
     sliderContainer.style.display = "block";
-
-    // Load images
-    // loadImages();
 
     // Slide images
 });
@@ -107,36 +104,18 @@ function isAllExtensionValid(images) {
 }
 
 // Function to loadimages.
-function loadImages() {
+function loadImage(image) {
+    let imgContainer = document.createElement("div");
+    imgContainer.classList.add("slide");
+    slides.appendChild(imgContainer);
+
+    let slideImg = document.createElement("img");
+    imgContainer.appendChild(slideImg);
+
     let fileReader = new FileReader();
     fileReader.onload = () => {
-        let fileURL = fileReader.result;
-        console.log(fileURL);
-        let imgTag = `<img src="${fileURL}" alt="" />`;
-        let divTag = `<div>${imgTag}</div>`;
-
-        sliderContainer.innerHTML = divTag;
-        // dropboxContainer.innerHTML = imgTag;
+        slideImg.src = fileReader.result;
     };
-    // fileReader.readAsDataURL(images[0]); // Has to add index
-    for (let i = 0; i < images.length; i++) {
-        fileReader.readAsDataURL(images[i]);
-    }
 
-    // let fileType = file.type;
-    // dropbox.classList.remove("active");
-    // const validExtension = ["image/png", "image/jpeg", "image/jpg"];
-    // if (validExtension.includes(fileType)) {
-    //     console.log("Upload success!");
-    //     let fileReader = new FileReader();
-    //     fileReader.onload = () => {
-    //         let fileURL = fileReader.result;
-    //         let imgTag = `<img src="${fileURL}" alt="" />`;
-    //         dropboxContainer.innerHTML = imgTag;
-    //     };
-    //     fileReader.readAsDataURL(file);
-    // } else {
-    //     alert("Please upload images with .png, .jpeg, or .jpg extension.");
-    //     dropbox.classList.remove("active");
-    // }
+    fileReader.readAsDataURL(image);
 }
