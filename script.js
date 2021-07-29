@@ -34,19 +34,22 @@ dropbox.addEventListener("drop", (e) => {
   e.preventDefault();
 
   images = Array.from(e.dataTransfer.files);
-  isAllExtensionValid(images);
+  if (isAllExtensionValid(images)) {
+    images = e.dataTransfer.files;
 
-  images = e.dataTransfer.files;
+    dropbox.classList.remove("active");
+    dropboxText.textContent = "Click play button to start or add more images.";
 
-  dropbox.classList.remove("active");
-  dropboxText.textContent = "Click play button to start or add more images.";
+    for (let i = 0; i < images.length; i++) {
+      loadImage(images[i]);
+    }
 
-  for (let i = 0; i < images.length; i++) {
-    loadImage(images[i]);
+    slides = document.querySelectorAll(".slide");
+    slides[0].classList.add("visible");
+  } else {
+    resetImages(images);
+    btnBrowse.style.pointerEvents = "auto";
   }
-
-  slides = document.querySelectorAll(".slide");
-  slides[0].classList.add("visible");
 });
 
 // Open up file input when Browse File button is clicked.
@@ -54,21 +57,24 @@ btnBrowse.addEventListener("click", () => {
   inputFile.click();
 });
 
-//
+// Add event listener file input
 inputFile.addEventListener("change", () => {
   images = Array.from(inputFile.files);
-  isAllExtensionValid(images);
 
-  images = inputFile.files;
+  if (isAllExtensionValid(images)) {
+    images = inputFile.files;
 
-  for (let i = 0; i < images.length; i++) {
-    loadImage(images[i]);
+    for (let i = 0; i < images.length; i++) {
+      loadImage(images[i]);
+    }
+
+    slides = document.querySelectorAll(".slide");
+    slides[0].classList.add("visible");
+
+    dropboxText.textContent = "Click play button to start or add more images.";
+  } else {
+    resetImages(images);
   }
-
-  slides = document.querySelectorAll(".slide");
-  slides[0].classList.add("visible");
-
-  dropboxText.textContent = "Click play button to start or add more images.";
 });
 
 // Start slide show when play icon is clicked.
@@ -113,24 +119,26 @@ reset.addEventListener("click", () => {
 
 // Function to verify image extensions.
 function isAllExtensionValid(images) {
-  let isAllExtValid = images.every((img) => {
+  const isAllExtValid = images.every((img) => {
     return validExtension.includes(img.type);
   });
 
-  if (!isAllExtValid) {
-    alert("Please upload images with .png, .jpeg, or .jpg extension.");
-    dropbox.classList.remove("active");
-    images = [];
-    return;
-  }
+  return isAllExtValid;
+}
+
+function resetImages(images) {
+  alert("Please upload images with .png, .jpeg, or .jpg extension.");
+  dropbox.classList.remove("active");
+  dropboxText.textContent = "Drag & Drop Images to Upload.";
+  images.length = 0;
 }
 
 // Function to loadimages.
 function loadImage(image) {
-  let imgContainer = document.createElement("div");
+  const imgContainer = document.createElement("div");
   imgContainer.classList.add("slide");
 
-  let fileReader = new FileReader();
+  const fileReader = new FileReader();
   fileReader.onload = () => {
     imgContainer.setAttribute(
       "style",

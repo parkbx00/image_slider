@@ -164,8 +164,19 @@ h2 {
 
 /* Footer */
 .container-footer {
+  padding-top: 1em;
   background-color: var(--clr-background);
   text-align: center;
+}
+
+.footer__github {
+  font-size: var(--font-medium);
+  transition: transform var(--timer-transition) ease-in-out;
+}
+
+.footer__github:hover {
+  color: var(--clr-highlight);
+  transform: scale(1.25);
 }
 
 /* Image Slider  */
