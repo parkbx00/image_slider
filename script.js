@@ -25,7 +25,7 @@ dropbox.addEventListener("dragover", (e) => {
 // Add event listener for dragLeave
 dropbox.addEventListener("dragleave", () => {
   dropbox.classList.remove("active");
-  dropboxText.textContent = "Drag & Drop Images to Upload.";
+  dropboxText.textContent = "Drag & Drop Image Files to Upload.";
   btnBrowse.style.pointerEvents = "auto";
 });
 
@@ -48,8 +48,8 @@ dropbox.addEventListener("drop", (e) => {
     slides[0].classList.add("visible");
   } else {
     resetImages(images);
-    btnBrowse.style.pointerEvents = "auto";
   }
+  btnBrowse.style.pointerEvents = "auto";
 });
 
 // Open up file input when Browse File button is clicked.
@@ -129,7 +129,7 @@ function isAllExtensionValid(images) {
 function resetImages(images) {
   alert("Please upload images with .png, .jpeg, or .jpg extension.");
   dropbox.classList.remove("active");
-  dropboxText.textContent = "Drag & Drop Images to Upload.";
+  dropboxText.textContent = "Drag & Drop Image Files to Upload.";
   images.length = 0;
 }
 
