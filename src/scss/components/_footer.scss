@@ -1,0 +1,17 @@
+@use "../abstracts/" as *;
+
+/* Footer */
+.container-footer {
+  padding-top: 1em;
+  background-color: $clrBackground;
+  text-align: center;
+
+  .footer__github {
+    font-size: $fontMedium;
+    transition: transform $timerTransition ease-in-out;
+
+    &:hover {
+      @include hover($clrHighlight, scale(1.25));
+    }
+  }
+}

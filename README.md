@@ -1,8 +1,22 @@
 # Image Slideshow
 
-- Created with vanilla HTML, CSS, and JavaScript
-- User can upload images of their choice and enjoy the slideshow
-- Slideshow can be navitaged with the play and pause buttons
-- User can reset the images by clicking on the trashcan button
+Built with vanilla JavaScript ,HTML, and SASS. This app allows users to upload their favorite images and  
+create a slideshow.
 
-\*\* This site neither saves nor shares the images users upload.
+\*\* This site does not save or shares the uploaded images.
+
+## Helpful Navigation Tips:
+
+### `Adding Images`
+
+- Add images by drag and drop or with the "Browse Files" button
+  \*\* Only the images with following extensions are accepted: .png, .jpeg, .jpg.
+
+### `Playing Slideshow`
+
+- Once all the images are added, click the `play` button to start
+- Slideshow can be paused and resumed by clicking the `pause` and `play` buttons
+
+### `Resetting Slideshow`
+
+- Slideshow and the images can be reset by clicking the `trashcan` button

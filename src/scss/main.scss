@@ -1,0 +1,63 @@
+@use "./abstracts" as *;
+@use "./components/navbar";
+@use "./components/dropbox";
+@use "./components/footer";
+@use "./components/slider";
+
+// Global
+body,
+ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Typography */
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  color: $clrText;
+}
+
+h1 {
+  font-size: $fontMedium;
+
+  @media screen {
+    @media (min-width: 900px) {
+      font-size: $fontLarge;
+    }
+  }
+}
+
+h2 {
+  font-size: $fontRegular;
+  @media screen {
+    @media (min-width: 900px) {
+      font-size: $fontMedium;
+      margin: 0;
+    }
+  }
+}
+
+.highlight {
+  color: $clrHighlight;
+  font-weight: $weightBold;
+}
+
+/* Main container */
+.container-main {
+  @include flex(column, flex-start, center);
+  flex-grow: 1;
+  background-color: $clrBackground;
+}
+
+/* Instruction */
+.container-instruction {
+  text-align: center;
+}

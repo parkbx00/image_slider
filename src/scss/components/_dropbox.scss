@@ -1,0 +1,76 @@
+@use "../abstracts/" as *;
+
+/* Dropbox */
+.container-dropbox {
+  flex-grow: 1;
+
+  .dropbox {
+    @include flex(column, center, center);
+    width: 90vw;
+    height: 70vh;
+    font-size: $fontRegular;
+    background-color: $clrDropbox;
+    border: 2px dashed $clrWhite;
+
+    @media screen {
+      @media (min-width: 900px) {
+        width: 900px;
+        height: 600px;
+        font-size: $fontRegular;
+        background-color: $clrDropbox;
+        border: 2px dashed $clrWhite;
+      }
+    }
+
+    &.active {
+      border: 2px solid $clrHighlight;
+    }
+
+    i {
+      font-size: $fontLarge;
+      color: $clrWhite;
+      pointer-events: none;
+
+      @media screen {
+        @media (min-width: 900px) {
+          font-size: $fontLarge + 1.75rem;
+          color: $clrWhite;
+        }
+      }
+    }
+
+    p {
+      pointer-events: none;
+      @media screen {
+        @media (min-width: 900px) {
+          font-size: $fontMedium;
+        }
+      }
+    }
+
+    .dropbox__btn-browse {
+      border: none;
+      outline: none;
+      padding: 0.75rem 1.75rem;
+      font-size: $fontRegular;
+      background-color: $clrBackground;
+      cursor: pointer;
+      transition: all $timerTransition ease-in-out;
+
+      &:hover {
+        background-color: $clrInput;
+        color: $clrBackground;
+        border-radius: 15px;
+      }
+      @media screen {
+        @media (min-width: 900px) {
+          font-size: $fontMedium;
+        }
+      }
+    }
+
+    .dropbox__file-loader {
+      visibility: hidden;
+    }
+  }
+}
