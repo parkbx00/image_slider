@@ -9,7 +9,7 @@ create a slideshow.
 
 ### `Adding Images`
 
-- Add images by drag and drop or with the "Browse Files" button
+- Add images by drag and drop or with the "Browse Files" button  
   \*\* Only the images with following extensions are accepted: .png, .jpeg, .jpg.
 
 ### `Playing Slideshow`
